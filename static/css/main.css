@@ -1,0 +1,20 @@
+a.button_blue {
+    color: inherit;
+    padding: 10px;
+    background-color: blue;
+    text-decoration: none;
+}
+
+a.button_blue:hover {
+    background-color: rgb(56, 106, 253);
+}
+
+a.plain_link,
+a.plain_link:link,
+a.plain_link:visited,
+a.plain_link:hover,
+a.plain_link:active {
+    text-decoration: none;
+    cursor: text;
+    color: lime;
+}
