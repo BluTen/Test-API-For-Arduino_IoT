@@ -20,8 +20,8 @@ def display_all():
 def display_post():
     if request.method == 'POST':
         with open("data.json", 'w') as fp:
-            json.dump({"display": request.form["text"]}, fp)
-        return redirect(url_for('home', text=loadf("display")))
+            json.dump(request.form["text"], fp)
+        return redirect(url_for('home', text=loadf()))
     return redirect('/')
 
 @app.errorhandler(404)
@@ -32,9 +32,7 @@ def page_not_found_error(error):
 # def arduino_list_filter():
 #     if
 
-def loadf(key=""):
-    if key:
-        return json.load(open("data.json", "r"))[key]
+def loadf():
     return json.load(open("data.json", "r"))
 
 if __name__ == "__main__":
