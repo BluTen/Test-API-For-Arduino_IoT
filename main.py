@@ -32,7 +32,7 @@ def page_not_found_error(error):
 # def arduino_list_filter():
 #     if
 
-def loadf(key =""):
+def loadf(key=""):
     if key:
         return json.load(open("data.json", "r"))[key]
     return json.load(open("data.json", "r"))
