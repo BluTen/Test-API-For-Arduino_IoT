@@ -1,3 +1,3 @@
 import json
-with open("data.py") as fp:
+with open("data.json") as fp:
     json.dump({"display": None}, fp)
