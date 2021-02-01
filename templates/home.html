@@ -22,7 +22,7 @@
     <span>
         <input value="{{ messages['btext'] }}" type="text" name="Your Sentence" id="TEXT">
     </span>
-    <a class="button-blue" href="#" onclick="myFunction()">Submit</a>
+    <a id="ButtoN" class="button-blue" href="#" onclick="myFunction()">Submit</a>
 </body>
 <script>
     function myFunction() {
@@ -36,6 +36,13 @@
             })
         }
     }
+document.getElementById("TEXT")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("ButtoN").click();
+    }
+});
 
     /**
      * sends a request to the specified url from a form. this will change the window location.
