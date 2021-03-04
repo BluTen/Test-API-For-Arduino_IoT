@@ -2,18 +2,36 @@ body {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(228, 228, 228);
+    margin: 0;
+}
+
+h1#header {
+    color: white;
+    background-color: blue;
+    padding: 3% 0%;
+    margin: 0;
+}
+
+input#TEXT {
+    height: 30px;
+    width: 200px;
 }
 
 a.button-blue {
-    color: inherit;
     padding: 10px;
-    background-color: blue;
+    border: 5px solid rgb(0, 0, 255);
+    background-color: rgb(47, 124, 255);
+    border-radius: 5px;
     text-decoration: none;
+    color: rgb(255, 255, 255);
+    height: 25px;
 }
 
-a.button-blue:hover {
-    background-color: rgb(56, 106, 253);
-}
+
+/* a.button-blue:hover {
+    border: 5px solid rgb(24, 24, 255);
+    background-color: rgb(87, 129, 255);
+} */
 
 h6#footer {
     position: fixed;

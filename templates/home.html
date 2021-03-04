@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <title>Arduino Control API</title>
+    <title>Arduino Control</title>
 
 </head>
 
@@ -17,10 +17,12 @@
 </header>
 
 <body>
-    <h1>Type your sentence</h1>
+    <h1 id="header">Arduino Control</h1>
     <br>
+    <h3 id="header2">Type your sentence</h3>
+    <!-- <br> -->
     <span>
-        <input value="{{ messages['btext'] }}" type="text" name="Your Sentence" id="TEXT">
+        <input value="{{ messages['btext'] }}" type="text" name="Your Sentence" id="TEXT" maxlength="16">
     </span>
     <a id="ButtoN" class="button-blue" href="#" onclick="myFunction()">Submit</a>
     <h6 id="footer">Programmed By: <strong>Nayan Shetty</strong></h6>
@@ -29,7 +31,7 @@
     function myFunction() {
         var input = document.getElementById("TEXT").value
 
-        if (input.length > 16) {
+        if (input.length === 0) {
             alert("Sentence can't be more than 16 in length!")
         } else {
             post('/display/post/', {
