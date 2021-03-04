@@ -1,6 +1,7 @@
 body {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(228, 228, 228);
 }
 
 a.button-blue {
@@ -12,4 +13,15 @@ a.button-blue {
 
 a.button-blue:hover {
     background-color: rgb(56, 106, 253);
+}
+
+h6#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px 0px;
+    opacity: .7;
+    background-color: rgb(180, 180, 180);
 }
