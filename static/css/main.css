@@ -43,3 +43,13 @@ h6#footer {
     opacity: .7;
     background-color: rgb(180, 180, 180);
 }
+
+span#pop_up {
+    position: absolute;
+    padding: 2px 5px;
+    bottom: 1%;
+    left: 1%;
+    color: white;
+    background-color: rgb(56, 56, 56);
+    border-radius: 15px;
+}

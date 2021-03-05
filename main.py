@@ -21,7 +21,7 @@ def display_post():
     if request.method == 'POST':
         with open("data.json", 'w') as fp:
             json.dump(request.form["text"], fp)
-        return redirect(url_for('home', text=loadf()))
+        return redirect(url_for('home', text=loadf(), redirect='1'))
     return redirect('/')
 
 @app.errorhandler(404)
