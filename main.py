@@ -38,7 +38,7 @@ def display_all():
 def display_post():
     if request.method == 'POST':
         print(request.get_data())
-        p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"]}})
+        p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"][:16]}})
         return redirect(url_for('home', text=request.form["text"], redirect='1'))
     return redirect('/p1/home')
 
