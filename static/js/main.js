@@ -21,9 +21,7 @@ function input_validate(url) {
     if (input.length === 0) {
         messageBubble("Can't Send empty Message")
     } else {
-        post(url, {
-            "text": input
-        });
+        post(url, { "text": input });
     }
 };
 
