@@ -57,7 +57,6 @@ function post(path, params, method = 'post') {
     const form = document.createElement('form');
     form.method = method;
     form.action = path;
-    form.enctype = "application/json"
 
     for (const key in params) {
         if (params.hasOwnProperty(key)) {
