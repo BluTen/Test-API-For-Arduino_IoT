@@ -40,8 +40,7 @@ def display_post():
         print(request.get_data())
         p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"]}})
         return redirect(url_for('home', text=request.form["text"], redirect='1'))
-    if request.form["noRedirect"] is None:
-        return redirect('/p1/home')
+    return redirect('/p1/home')
 
 @app.errorhandler(404)
 def page_not_found_error(error):
