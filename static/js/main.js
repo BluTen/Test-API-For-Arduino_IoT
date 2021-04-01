@@ -1,4 +1,4 @@
-if (getParams(window.location.href)['redirect'] === '1') {
+if (getParams(window.location.href)['sent'] === '1') {
     messageBubble("Message Sent")
 } else { document.getElementById('pop_up').style.display = "none" }
 
