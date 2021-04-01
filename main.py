@@ -1,39 +1,54 @@
-import json
-
 import flask
 from flask import jsonify, render_template, redirect, url_for, request
+
+import pymongo
+
+from utils import loadjson
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
+db_client = pymongo.MongoClient(loadjson("cred.json")["db_url"])
+db = db_client["database0"]
+p1_t = db["p1_t"]
+p2_t = db["p2_t"]
+
+@app.before_first_request
+def startup_func():
+    print(" * Startup function Called")
+    p2_t.delete_many({})
+    p2_t.insert_one({"_id": 0, "main light": 0})
+    if p1_t.find_one(filter={"_id": 0}) is None:
+        p1_t.insert({"_id":0, "message": ""})
+    print(" * Startup function Finished")
+
 @app.route('/', methods=['GET'])
+@app.route('/p1', methods=['GET'])
+@app.route('/p1/home', methods=['GET'])
 def home():
     if request.args.get("text") is not None:
         return render_template('home.html', messages={"btext": request.args["text"]})
     return render_template('home.html', messages={"btext": ""})
 
-@app.route('/display/all/', methods=['GET'])
+@app.route('/p1/c_message', methods=['GET'])
 def display_all():
-    return jsonify(loadf())
+    return jsonify(p1_t.find_one({"_id": 0})["message"])
 
-@app.route("/display/post/", methods=['GET','POST'])
+@app.route("/p1/post_message", methods=['GET','POST'])
 def display_post():
     if request.method == 'POST':
-        with open("data.json", 'w') as fp:
-            json.dump(request.form["text"], fp)
-        return redirect(url_for('home', text=loadf(), redirect='1'))
-    return redirect('/')
+        print(request.get_data())
+        p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"]}})
+        return redirect(url_for('home', text=request.form["text"], redirect='1'))
+    return redirect('/p1/home')
 
 @app.errorhandler(404)
 def page_not_found_error(error):
-    return {404:'Page Not Found'}
-
+    return {"Status":404, "Message": 'Page/Query Not Found'}
+    
 # @app.route('/arduino/list/', methods=['GET'])
 # def arduino_list_filter():
 #     if
-
-def loadf():
-    return json.load(open("data.json", "r"))
 
 if __name__ == "__main__":
     app.run()

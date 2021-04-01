@@ -17,16 +17,19 @@
 </header>
 
 <body>
-    <div id="main">
-        <br>
-        <h3 id="header2">Type your sentence</h3>
+    <div id="message_div">
+        <h2 id="header2">Type Your Message</h2>
         <!-- <br> -->
         <span>
             <input value="{{ messages['btext'] }}" type="text" name="Your Sentence" id="TEXT" maxlength="16">
         </span>
-        <a id="ButtoN" class="button-blue" href="#" onclick="input_validate()">Submit</a>
-        <h6 id="footer">Programmed By: <strong>Nayan Shetty</strong></h6>
+        <a id="ButtoN" class="button-blue" href="#" onclick='input_validate("/p1/post_message")'>Submit</a>
     </div>
+    <div id="about_div">
+        This page was made during the making of one of my project which demonstrated how the internet works....
+    </div>
+
+    <h6 id="footer">Programmed By: <strong>Nayan Shetty</strong></h6>
 
     <span id="pop_up"></span>
 

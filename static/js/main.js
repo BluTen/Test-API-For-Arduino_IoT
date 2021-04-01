@@ -11,16 +11,17 @@ document.getElementById("TEXT")
     });
 
 /**
- * @return {null}    Just gives a alert
+ * @param {String} url The URL To redirect
+ * @return {null} Just gives a alert
  */
 
-function input_validate() {
+function input_validate(url) {
     var input = document.getElementById("TEXT").value;
 
     if (input.length === 0) {
         messageBubble("Can't Send empty Message")
     } else {
-        post('/display/post/', {
+        post(url, {
             "text": input
         });
     }
@@ -56,6 +57,7 @@ function post(path, params, method = 'post') {
     const form = document.createElement('form');
     form.method = method;
     form.action = path;
+    form.enctype = "application/json"
 
     for (const key in params) {
         if (params.hasOwnProperty(key)) {
