@@ -6,7 +6,6 @@ import pymongo
 from utils import loadjson
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 
 db_client = pymongo.MongoClient(loadjson("cred.json")["db_url"])
 db = db_client["database0"]
