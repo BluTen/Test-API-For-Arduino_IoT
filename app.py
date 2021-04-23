@@ -17,31 +17,26 @@ def startup_func():
     print(" * Startup function Called")
     p2_t.delete_many({})
     p2_t.insert_one({"_id": 0, "main light": 0})
-    if p1_t.find_one(filter={"_id": 0}) is None:
-        p1_t.insert({"_id":0, "message": ""})
+    if p1_t.find_one(filter={"_id": 0}) is None: p1_t.insert({"_id":0, "message": ""})
     print(" * Startup function Finished")
 
 @app.route('/', methods=['GET'])
 @app.route('/p1', methods=['GET'])
 @app.route('/p1/home', methods=['GET'])
 def home():
-    if request.args.get("text") is not None:
-        return render_template('home.html', messages={"btext": request.args["text"]})
-    return render_template('home.html', messages={"btext": ""})
+    return render_template('home.html', messages={"btext": request.args["text"] if request.args.get("text") is not None else ""})
 
-@app.route('/p1/c_message', methods=['GET'])
+@app.route('/p1/api/message', methods=['GET', 'POST'])
 def display_all():
-    return jsonify(p1_t.find_one({"_id": 0})["message"])
-
-@app.route("/p1/post_message", methods=['GET','POST'])
-def display_post():
-    if request.method == 'POST':
-        p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"][:16]}})
-        if request.args.get("redirect", type=int) == 0:
-            return {"Status":200, "Message": 'Done'}
-        else:
-            return redirect(url_for('home', text=request.form["text"], sent='1'))
-    return redirect('/p1/home')
+    if request.method == 'GET':
+        if request.args.get('raw') == 'true':
+            return jsonify(p1_t.find_one({"_id": 0})["message"])
+        # print(p1_t.find_one({"_id": 0}))
+        # print(p1_t.find_one({"_id": 0}, {'_id': 0}))
+        return jsonify(p1_t.find_one({"_id": 0}, {'_id': 0}))
+    elif request.method == 'POST':
+        p1_t.update_one({"_id": 0}, {"$set":{"message": request.form["text"]}})
+        return {"Status":201, "Message": 'Updated'}
 
 @app.errorhandler(404)
 def page_not_found_error(error):

@@ -1,27 +1,40 @@
 body {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(247, 247, 247);
     margin: 0;
 }
 
-.message_div {
-    height: max-content;
+.container-message-body {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    /* border: 5px solid rgb(211, 211, 211); */
+    box-shadow: 0 1px 5px 4px rgb(212, 212, 212);
+    margin: 25px;
+    padding: 30px 0;
+    height: 100%;
+    /* width: 100%; */
 }
 
-h1#header {
+.header {
+    box-shadow: 0 1px 5px 4px rgb(212, 212, 212);
+}
+
+.header-text {
     color: white;
     background-color: blue;
     padding: 3% 0%;
     margin: 0;
 }
 
-input#TEXT {
+.text-input {
     height: 30px;
     width: 200px;
+    background-color: rgb(248, 248, 248);
+    box-shadow: 0 0 1px 2px rgb(228, 228, 228);
 }
 
-a.button-blue {
+.button-blue {
     padding: 10px;
     border: 5px solid rgb(0, 0, 255);
     background-color: rgb(47, 124, 255);
@@ -37,7 +50,7 @@ a.button-blue {
     background-color: rgb(87, 129, 255);
 } */
 
-h6#footer {
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -48,12 +61,52 @@ h6#footer {
     background-color: rgb(180, 180, 180);
 }
 
-span#pop_up {
+.pop-up {
     position: absolute;
-    padding: 2px 5px;
+    padding: 5px 10px;
     bottom: 1%;
     left: 1%;
     color: white;
     background-color: rgb(56, 56, 56);
     border-radius: 15px;
+    display: none;
+    opacity: 0;
+    animation: open-close 5s linear 1;
+}
+
+@keyframes open-close {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.95;
+    }
+    80% {
+        opacity: 0.95;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.loader {
+    border: 7px solid rgb(78, 78, 255);
+    border-top: 7px solid rgb(226, 226, 226);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
