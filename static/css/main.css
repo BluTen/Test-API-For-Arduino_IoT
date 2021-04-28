@@ -3,4 +3,29 @@ html body {
     font-family: "Open Sans", sans-serif;
     background-color: rgb(247, 247, 247);
     margin: 0;
+    cursor: default;
+}
+
+a.disabled {
+    color: #505050;
+    padding: 10px;
+    margin-left: 5px;
+    border: 2px solid #6e6e6e;
+    background-color: #adadad;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a.disabled:hover {
+    background-color: #adadad;
+    box-shadow: none;
+    cursor: default;
+}
+
+input:disabled {
+    background-color: rgb(234, 234, 234);
+}
+
+input:disabled:hover {
+    box-shadow: 0 0 1px 2px #e4e4e4;
 }

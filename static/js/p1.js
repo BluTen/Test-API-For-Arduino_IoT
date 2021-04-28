@@ -1,10 +1,15 @@
-document.getElementById("TEXT")
-    .addEventListener("keyup", function(event) {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-            document.getElementById("ButtoN").click();
-        }
-    });
+var timeoutID = 0;
+var textInput = document.getElementById("TEXT");
+var sendButton = document.getElementById("Button");
+var input_value = "";
+
+
+textInput.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        sendButton.click();
+    }
+});
 
 /**
  * Sends a Message
@@ -13,10 +18,14 @@ document.getElementById("TEXT")
  */
 function sendMessage() {
     if (!inputValidate()) return;
-    var input = document.getElementById("TEXT").value;
-    sendRequest("p1/api/message", { "text": input }, "post");
-    var element = document.getElementById("loading-circle");
-    element.style.display = "block";
+    textInput.disabled = true;
+    sendButton.classList.add("disabled");
+    input_value = textInput.value;
+    textInput.value = "";
+    textInput.placeholder = "Wait...";
+    sendRequest("/p1/api/message", { "text": input_value }, "post");
+    document.getElementById("loading-circle").style.display = "block";
+    clearTimeout(timeoutID);
 };
 
 /**
@@ -24,12 +33,12 @@ function sendMessage() {
  */
 
 function inputValidate() {
-    var input = document.getElementById("TEXT").value;
+    var input = textInput.value;
     if (input.length === 0) {
         messageBubble("Can't Send empty Message");
-        return false
-    }
-    return true
+        return false;
+    };
+    return true;
 };
 
 /**
@@ -40,18 +49,33 @@ function inputValidate() {
  */
 
 function sendRequest(path, params, method) {
-
     var xhr = new XMLHttpRequest();
+    var loader = document.getElementById("loading-circle");
+
     if (method.toUpperCase() === "POST") {
         console.log("* Sending POST Request...")
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var element = document.getElementById("loading-circle");
-                element.style.display = "none";
+            if (this.readyState == 4 && this.status < 300 && this.status >= 200) {
+                loader.style.display = "none";
+                textInput.value = input_value;
+                textInput.placeholder = "Your Message";
+                textInput.disabled = false;
+                sendButton.classList.remove("disabled");
                 messageBubble("Message Sent");
                 console.log(
                     "* Recived POST request response code: " + this.status +
-                    ", With response text: \"" + this.statusText + "\"\n"
+                    ", With response text: \n\"" + this.responseText + "\"\n"
+                )
+            } else if (this.readyState == 4) {
+                loader.style.display = "none";
+                messageBubble("Message Not Sent");
+                textInput.value = input_value;
+                textInput.placeholder = "Your Message";
+                textInput.disabled = false;
+                sendButton.classList.remove("disabled");
+                console.log(
+                    "* Recived POST request response code: " + this.status +
+                    ", With response text: \n\"" + this.responseText + "\"\n"
                 )
             };
         };
@@ -77,9 +101,20 @@ function sendRequest(path, params, method) {
  * @param {String} text The message for the bubble
  */
 function messageBubble(text) {
-    var elem = document.getElementById("pop_up");
-    elem.innerHTML = text;
-    elem.style.display = "none";
-    elem.style.display = "block";
-    setTimeout(() => { elem.style.display = "none"; }, 5000);
+    var pop_up = document.getElementById("pop_up");
+    pop_up.innerHTML = text;
+    pop_up.style.display = "none";
+    setTimeout(() => {
+        pop_up.style.display = "block";
+    }, 10);
+    // elem.style.display = "block";
+    // elem.innerHTML = text
+    // elem.classList.remove("pop-up");
+    // void elem.offsetWidth;
+    // elem.classList.add("pop-up");
+    // elem.style.display = "none";
+    // elem.innerHTML = text;
+    // elem.style.display = "block";
+    // console.log("elem block");
+
 };

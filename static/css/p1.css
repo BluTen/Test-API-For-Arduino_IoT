@@ -1,8 +1,8 @@
 .container-message-body {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     border-radius: 10px;
     /* border: 5px solid rgb(211, 211, 211); */
-    box-shadow: 0 1px 5px 4px rgb(212, 212, 212);
+    box-shadow: 0 1px 5px 4px #d4d4d4;
     margin: 25px;
     padding: 30px 0;
     height: 100%;
@@ -10,9 +10,9 @@
 }
 
 .header {
-    box-shadow: 0 1px 5px 4px rgb(212, 212, 212);
-    color: white;
-    background-color: blue;
+    box-shadow: 0 1px 5px 4px #d4d4d4;
+    color: #ffffff;
+    background-color: #0000ff;
 }
 
 .header-text {
@@ -24,29 +24,57 @@
     height: 30px;
     width: 200px;
     padding: 5px 10px;
-    background-color: rgb(248, 248, 248);
-    border: 2px solid rgb(143, 143, 143);
+    background-color: #f8f8f8;
+    border: 2px solid #8f8f8f;
     border-radius: 5px;
-    box-shadow: 0 0 1px 2px rgb(228, 228, 228);
+    box-shadow: 0 0 1px 2px #e4e4e4;
 }
 
 .text-input:hover {
-    box-shadow: 0 0 1px 2px rgb(194, 194, 194);
+    box-shadow: 0 0 1px 2px #c2c2c2;
+    cursor: text;
 }
 
 .text-input:focus {
-    box-shadow: 0 0 1px 2px rgb(194, 194, 194);
-    border: 2px solid rgb(143, 143, 143);
+    box-shadow: 0 0 1px 2px #c2c2c2;
+    outline: none;
 }
 
-.button-blue {
+.text-input:active {
+    box-shadow: 0 0 1px 2px #c2c2c2;
+    cursor: auto;
+}
+
+.button {
+    display: inline-block;
     padding: 10px;
-    border: 5px solid rgb(0, 0, 255);
-    background-color: rgb(47, 124, 255);
+    margin: 5px;
+    border: 2px solid #6e6e6e;
+    background-color: #adadad;
     border-radius: 5px;
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    height: 25px;
+    color: #ffffff;
+    height: 20px;
+    width: 20px;
+    background-image: url("/static/img/send_button.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.button:hover {
+    box-shadow: 0 0 1px 2px #cccccc;
+    background-color: #a5a5a5;
+    cursor: pointer;
+}
+
+.button:active {
+    box-shadow: 0 0 1px 2px #cccccc;
+    background-color: #a5a5a5;
+    cursor: pointer;
+}
+
+a.disabled {
+    background-image: url("/static/img/send_button_disabled.png");
 }
 
 
@@ -54,6 +82,13 @@
     border: 5px solid rgb(24, 24, 255);
     background-color: rgb(87, 129, 255);
 } */
+
+.flex-container-row-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
 
 .footer {
     position: fixed;
@@ -63,7 +98,7 @@
     margin: 0;
     padding: 20px 0px;
     opacity: .6;
-    background-color: rgb(180, 180, 180);
+    background-color: #b4b4b4;
 }
 
 .pop-up {
@@ -71,12 +106,12 @@
     padding: 5px 10px;
     bottom: 1%;
     left: 1%;
-    color: white;
-    background-color: rgb(56, 56, 56);
+    color: #ffffff;
+    background-color: #383838;
     border-radius: 15px;
     display: none;
     opacity: 0;
-    animation: open-close 5s linear 1;
+    animation: open-close 3s linear 1;
 }
 
 @keyframes open-close {
@@ -95,8 +130,8 @@
 }
 
 .loader {
-    border: 7px solid rgb(78, 78, 255);
-    border-top: 7px solid rgb(226, 226, 226);
+    border: 7px solid #4e4eff;
+    border-top: 7px solid #e2e2e2;
     border-radius: 50%;
     height: 25px;
     width: 25px;
